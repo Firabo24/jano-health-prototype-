@@ -1,0 +1,41 @@
+{
+  "name": "react-example",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx server.ts",
+    "build": "vite build && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs",
+    "start": "node dist/server.cjs",
+    "preview": "vite preview",
+    "clean": "rm -rf dist server.js",
+    "lint": "tsc --noEmit",
+    "check:release-artifacts": "tsx scripts/checkReleaseArtifacts.ts",
+    "test": "tsx test/offline-architecture.test.ts && tsx test/failure-recovery.test.ts && tsx test/security-hardening.test.ts && tsx test/multi-role-security.test.ts && tsx test/clinical-core-patient.test.ts && tsx test/clinical-core-encounters.test.ts && tsx test/clinical-core-assessment.test.ts && tsx test/clinical-core-laboratory.test.ts && tsx test/clinical-core-radiology.test.ts && tsx test/clinical-core-medication.test.ts && tsx test/clinical-core-pharmacy.test.ts && tsx test/fhir-interoperability.test.ts && tsx test/fhir-gateway.test.ts && tsx test/network-foundation.test.ts && tsx test/v15-identity-consent-financing.test.ts && tsx test/v16-workforce.test.ts && tsx test/v17-supply-chain.test.ts && tsx test/v18-research.test.ts && tsx test/v19-national-ecosystem.test.ts && tsx test/v20-system-intelligence.test.ts && tsx test/v21-production-readiness.test.ts && tsx test/v22-clinical-validation-safety.test.ts && tsx test/v23-controlled-pilot.test.ts && tsx test/stage-1-auth-ai-security.test.ts && tsx test/stage-2-sync-facility-isolation.test.ts && tsx test/stage-3-persistence-durability.test.ts && tsx test/stage-3-2-corruption-recovery-gate.test.ts && tsx test/stage-3-2-2-recovery-completeness.test.ts && tsx test/stage-3-2-4-data-loss-override-safety.test.ts && tsx test/stage-3-2-4-2-recovery-audit-preservation.test.ts && tsx test/stage-3-2-4-2-2-transaction-safety.test.ts && tsx test/stage-3-2-4-2-4-2-2-preservation-consistency.test.ts && tsx test/stage-3-2-4-3-verified-recovery-authorization.test.ts && tsx test/stage-3-2-5-1-indexeddb-write-acknowledgement.test.ts && tsx test/stage-3-2-5-2-pharmacy-v7-durability.test.ts && tsx test/stage-3-2-5-3-atomic-dispense-reversal.test.ts && tsx test/stage-3-2-5-4-inventory-bridge-cache-integrity.test.ts && tsx test/stage-3-2-5-7-inventory-event-durability.test.ts && tsx test/stage-3-2-5-8-clinical-storage-fallback-security.test.ts && tsx test/stage-3-2-5-8-1-2-write-ack-and-migration-race.test.ts && tsx test/stage-3-2-5-8-1-4-cleanup-safety-and-admin-acks.test.ts && tsx test/stage-3-2-5-8-1-12-runtime-protection-and-readiness.test.ts && tsx test/stage-3-2-5-8-1-13-firestore-backend.test.ts && tsx test/stage-3-2-5-8-1-13-2-unified-backend-routing.test.ts && tsx test/test-all-flows.ts"
+  },
+  "dependencies": {
+    "@google/genai": "^2.4.0",
+    "@tailwindcss/vite": "^4.1.14",
+    "@vitejs/plugin-react": "^5.0.4",
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
+    "firebase": "^12.18.0",
+    "firebase-admin": "^14.5.0",
+    "lucide-react": "^0.546.0",
+    "motion": "^12.23.24",
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1",
+    "vite": "^6.2.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.14.0",
+    "autoprefixer": "^10.4.21",
+    "esbuild": "^0.25.0",
+    "fake-indexeddb": "^6.2.5",
+    "tailwindcss": "^4.1.14",
+    "tsx": "^4.21.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.3"
+  }
+}

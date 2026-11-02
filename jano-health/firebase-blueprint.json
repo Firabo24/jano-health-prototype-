@@ -1,0 +1,98 @@
+{
+  "entities": {
+    "User": {
+      "description": "Healthcare worker or administrator user profile in Jano Health",
+      "properties": {
+        "id": { "type": "string", "description": "Unique user ID (auth uid)" },
+        "email": { "type": "string", "description": "User email address" },
+        "fullName": { "type": "string", "description": "Clinician or staff full name" },
+        "role": { "type": "string", "description": "Assigned primary role" },
+        "facilityId": { "type": "string", "description": "Assigned healthcare facility" },
+        "departmentId": { "type": "string", "description": "Assigned clinical department" },
+        "licenseNumber": { "type": "string", "description": "Medical or nursing council registration" },
+        "isActive": { "type": "boolean", "description": "Whether account is currently active" },
+        "createdAt": { "type": "string", "description": "ISO timestamp of creation" }
+      }
+    },
+    "Patient": {
+      "description": "Patient demographic and clinical master record",
+      "properties": {
+        "id": { "type": "string", "description": "Internal UUID for patient" },
+        "mrn": { "type": "string", "description": "Medical Record Number" },
+        "nationalId": { "type": "string", "description": "Government/National ID if available" },
+        "firstName": { "type": "string", "description": "First name" },
+        "lastName": { "type": "string", "description": "Last name" },
+        "dateOfBirth": { "type": "string", "description": "YYYY-MM-DD" },
+        "gender": { "type": "string", "description": "Biological sex / gender" },
+        "bloodGroup": { "type": "string", "description": "ABO and Rh factor" },
+        "phoneNumber": { "type": "string", "description": "Contact phone" },
+        "villageTown": { "type": "string", "description": "Village, town, or locality" },
+        "primaryFacilityId": { "type": "string", "description": "Registered health center" },
+        "emergencyContact": { "type": "object", "description": "Next of kin name and phone" },
+        "triageUrgency": { "type": "string", "description": "Current triage status: normal, urgent, emergency" },
+        "version": { "type": "number", "description": "Optimistic locking version for sync" },
+        "updatedAt": { "type": "string", "description": "ISO timestamp" }
+      }
+    },
+    "Encounter": {
+      "description": "Clinical encounter or consultation record",
+      "properties": {
+        "id": { "type": "string", "description": "Encounter ID" },
+        "patientId": { "type": "string", "description": "Associated patient ID" },
+        "clinicianId": { "type": "string", "description": "Attending clinician user ID" },
+        "facilityId": { "type": "string", "description": "Facility ID" },
+        "type": { "type": "string", "description": "outpatient, inpatient, emergency, mobile_outreach" },
+        "status": { "type": "string", "description": "in_progress, completed, referred" },
+        "chiefComplaint": { "type": "string", "description": "Reason for visit" },
+        "startedAt": { "type": "string", "description": "ISO timestamp" },
+        "endedAt": { "type": "string", "description": "ISO timestamp" }
+      }
+    },
+    "VitalSign": {
+      "description": "Recorded physiological measurements",
+      "properties": {
+        "id": { "type": "string", "description": "Vital record ID" },
+        "patientId": { "type": "string", "description": "Associated patient ID" },
+        "encounterId": { "type": "string", "description": "Optional encounter ID" },
+        "systolicBp": { "type": "number", "description": "Systolic BP mmHg" },
+        "diastolicBp": { "type": "number", "description": "Diastolic BP mmHg" },
+        "heartRate": { "type": "number", "description": "BPM" },
+        "temperature": { "type": "number", "description": "Celsius" },
+        "respiratoryRate": { "type": "number", "description": "Breaths per min" },
+        "oxygenSaturation": { "type": "number", "description": "SpO2 percentage" },
+        "weightKg": { "type": "number", "description": "Weight in kg" },
+        "recordedBy": { "type": "string", "description": "Staff ID" },
+        "recordedAt": { "type": "string", "description": "ISO timestamp" }
+      }
+    },
+    "AuditEvent": {
+      "description": "Immutable security and clinical operation audit log",
+      "properties": {
+        "id": { "type": "string", "description": "Unique audit log ID" },
+        "actorId": { "type": "string", "description": "User ID performing the action" },
+        "actorRole": { "type": "string", "description": "Role of user at execution time" },
+        "facilityId": { "type": "string", "description": "Healthcare facility ID" },
+        "action": { "type": "string", "description": "e.g., VIEW_CHART, CREATE_ENCOUNTER, DISPENSE_MED" },
+        "resourceType": { "type": "string", "description": "Domain entity type" },
+        "resourceId": { "type": "string", "description": "ID of resource affected" },
+        "timestamp": { "type": "string", "description": "ISO timestamp" },
+        "deviceId": { "type": "string", "description": "Client device UUID" },
+        "syncStatus": { "type": "string", "description": "synced, pending_sync, offline_cached" }
+      }
+    },
+    "SyncEvent": {
+      "description": "Synchronization delta event for offline replication",
+      "properties": {
+        "id": { "type": "string", "description": "Event ID" },
+        "eventType": { "type": "string", "description": "PATIENT_CREATED, VITAL_SIGN_RECORDED, etc." },
+        "entityName": { "type": "string", "description": "Entity category" },
+        "entityId": { "type": "string", "description": "Target entity ID" },
+        "payload": { "type": "object", "description": "Serialized entity delta" },
+        "clientTimestamp": { "type": "string", "description": "Device capture timestamp" },
+        "deviceId": { "type": "string", "description": "Device UUID" },
+        "status": { "type": "string", "description": "queued, synced, conflict, failed" },
+        "retryCount": { "type": "number", "description": "Number of sync attempts" }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+# Dependencies and build outputs
+node_modules
+build
+dist
+coverage
+.git
+.DS_Store
+*.log
+
+# Sensitive environment files
+.env*
+!.env.example
+
+# Authoritative Server Ledger Runtime Artifacts, Journals, Backups, and Quarantine
+.server_ledger_*
+*.corrupted.*
+*.tmp.*

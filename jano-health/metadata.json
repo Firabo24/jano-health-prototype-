@@ -1,0 +1,6 @@
+{
+  "name": "Jano Health",
+  "description": "Offline-first, AI-powered EHR and clinical decision-support platform for low-resource healthcare environments.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
